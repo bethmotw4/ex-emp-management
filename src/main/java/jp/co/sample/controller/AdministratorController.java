@@ -65,14 +65,13 @@ public class AdministratorController {
 	 * 
 	 * @param form ログインフォーム
 	 * @param model リクエストスコープ
-	 * @return 
+	 * @return ログイン成功：従業員一覧画面、ログイン失敗：ログイン画面
 	 */
 	@RequestMapping("/login")
 	public String login(LoginForm form, Model model) {
 		Administrator administrator = service.login(form.getMailAddress(), form.getPassword());
 		if (administrator == null) {
-			String errorMessage = "メールアドレスまたはパスワードが不正です。";
-			model.addAttribute("errorMessage", errorMessage);
+			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
 			return "administrator/login";
 		}
 		session.setAttribute("administratorName", administrator.getName());
