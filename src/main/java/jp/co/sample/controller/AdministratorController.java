@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
@@ -23,13 +24,34 @@ public class AdministratorController {
 	private AdministratorService service;
 	
 	/**
-	 * フォームを初期化する.
+	 * ログイン時に使用するフォームを初期化する.
+	 * 
+	 * @return フォーム
+	 */
+	@ModelAttribute
+	public LoginForm setUpLoginForm() {
+		return new LoginForm();
+	}
+	
+	/**
+	 * 管理者登録時に使用するフォームを初期化する.
 	 * 
 	 * @return フォーム
 	 */
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministratorForm() {
 		return new InsertAdministratorForm();
+	}
+	
+	
+	/**
+	 * ログイン画面にフォワードする.
+	 * 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login";
 	}
 	
 	/**
