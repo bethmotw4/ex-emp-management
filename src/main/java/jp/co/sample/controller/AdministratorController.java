@@ -101,4 +101,15 @@ public class AdministratorController {
 		service.insert(administrator);
 		return "redirect:/";
 	}
+	
+	/**
+	 * ログアウト処理をする.
+	 * 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
+	}
 }
